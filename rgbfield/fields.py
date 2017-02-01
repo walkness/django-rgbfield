@@ -56,6 +56,8 @@ class RGBColorField(models.CharField):
         return int_to_rgb(value)
 
     def get_prep_value(self, value):
+        if value is None:
+            return None
         try:
             offs = 1 if value[0] == '#' else 0
             value = value[offs:]
